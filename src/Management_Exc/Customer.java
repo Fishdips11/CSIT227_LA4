@@ -3,11 +3,13 @@ package Management_Exc;
 public class Customer extends Person {
 
     public Customer(String name, int age) {
+
         super(name, age);
     }
 
     @Override
     public void performTask() {
+
         System.out.println(getName() + " is browsing through");
     }
 
@@ -17,6 +19,15 @@ public class Customer extends Person {
      * @return the dialogue of the customer
      */
     public String speak(Employee e) {
-        return null;
+
+        if (e instanceof Developer) {
+            if (this.getAge() > e.getAge()) {
+                if (((Developer) e).getProjectManager() != null) {
+                    return "Can I see your manager " + ((Developer)e).getProjectManager().getName() + "?";
+                }
+            }
+        }
+
+        return "Oh, hello, " + e.getName() + ". Can you assist me?";
     }
 }

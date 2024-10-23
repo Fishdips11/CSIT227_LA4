@@ -1,48 +1,53 @@
 package Management_Exc;
 
-public class Developer extends Employee {
-    private Manager projectManager;
+    public class Developer extends Employee {
+        private Manager projectManager;
 
-    public Developer(String name, int age, double salary) {
-        super(name, age, salary);
-        projectManager = null;
-    }
+        public Developer(String name, int age, double salary) {
+            super(name, age, salary);
+            projectManager = null;
+        }
 
-    public Manager getProjectManager() {
-        return projectManager;
-    }
+        public Manager getProjectManager() {
 
-    /**
-     * TODO the implementation
-     * @param projectManager to be added as project manager
-     * @throws IllegalStateException when this developer already has a project manager
-     */
-    protected void setProjectManager(Manager projectManager) throws IllegalStateException{
+            return projectManager;
+        }
 
-    }
+        /**
+         * TODO the implementation
+         * @param projectManager to be added as project manager
+         * @throws IllegalStateException when this developer already has a project manager
+         */
+        protected void setProjectManager(Manager projectManager) throws IllegalStateException{
+            if (getProjectManager() != null) {
+                throw new IllegalStateException(super.getName() + " already has a manager: " + this.projectManager.getName());
+            }
 
-    public void removePM() {
-        projectManager = null;
-    }
+            this.projectManager = projectManager;
+        }
 
-    @Override
-    public void birthday() {
-        super.birthday();
-        if (projectManager != null) {
-            projectManager.giveRaise(this, this.getSalary()*0.05);
+        public void removePM() {
+            projectManager = null;
+        }
+
+        @Override
+        public void birthday() {
+            super.birthday();
+            if (projectManager != null) {
+                projectManager.giveRaise(this, this.getSalary()*0.05);
+            }
+        }
+
+        @Override
+        public void performTask() {
+            System.out.println(getName() + " is coding");
+        }
+
+        @Override
+        public String toString() {
+            if (projectManager != null) {
+                return super.toString() + " [" + projectManager.getName() + "]";
+            }
+            return super.toString();
         }
     }
-
-    @Override
-    public void performTask() {
-        System.out.println(getName() + " is coding");
-    }
-
-    @Override
-    public String toString() {
-        if (projectManager != null) {
-            return super.toString() + " [" + projectManager.getName() + "]";
-        }
-        return super.toString();
-    }
-}
