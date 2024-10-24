@@ -20,12 +20,12 @@ public class Main {
             throw new IllegalArgumentException("Raise must be non-negative");
         }
 
-        Manager m = null;
-        Employee e = null;
+        Manager man = null;
+        Employee emp = null;
         for (Person p : persons) {
             if (p.getName().equals(manager)) {
                 if (p instanceof Manager) {
-                    m = (Manager)p;
+                    man = (Manager)p;
                     break;
                 } else {
                     throw new ClassCastException(manager + " is not a manager");
@@ -36,7 +36,7 @@ public class Main {
         for (Person p1 : persons) {
             if (p1.getName().equals(employee)) {
                 if (p1 instanceof Employee) {
-                    e = (Employee)p1;
+                    emp = (Employee)p1;
                     break;
                 } else {
                     throw new ClassCastException(employee + " is not an employee");
@@ -44,15 +44,15 @@ public class Main {
             }
         }
 
-        if (m == null) {
+        if (man == null) {
             throw new NoSuchElementException(manager + " does not exist");
         }
 
-        if (e == null) {
+        if (emp == null) {
             throw new NoSuchElementException(employee + " does not exist");
         }
 
-        m.giveRaise(e, salary);
+        man.giveRaise(emp, salary);
     }
 
     /**
@@ -67,12 +67,12 @@ public class Main {
 
     public static void assignPM(List<Person> persons, String developer, String manager) {
 
-        Manager m = null;
-        Developer d = null;
+        Manager man = null;
+        Developer dev = null;
         for (Person p : persons) {
             if (p.getName().equals(manager)) {
                 if (p instanceof Manager) {
-                    m = (Manager)p;
+                    man = (Manager)p;
                     break;
                 } else {
                     throw new ClassCastException(manager + " is not a manager");
@@ -83,22 +83,22 @@ public class Main {
         for (Person p1 : persons) {
             if (p1.getName().equals(developer)) {
                 if (p1 instanceof Developer) {
-                    d = (Developer)p1;
+                    dev = (Developer)p1;
                 } else {
                     throw new ClassCastException();
                 }
             }
         }
 
-        if (m == null) {
+        if (man == null) {
             throw new NoSuchElementException(manager + " does not exist");
         }
 
-        if (d == null) {
+        if (dev == null) {
             throw new NoSuchElementException(developer + " does not exist");
         }
 
-        d.setProjectManager(m);
+        dev.setProjectManager(man);
     }
 
     /**
@@ -112,13 +112,13 @@ public class Main {
      */
     public static String customerSpeak(List<Person> persons, String customer, String employee) {
 
-        Customer c = null;
-        Employee e = null;
+        Customer cus = null;
+        Employee emp = null;
 
         for (Person p : persons) {
             if (p.getName().equals(customer)) {
                 if (p instanceof Customer) {
-                    c = (Customer)p;
+                    cus = (Customer)p;
                     break;
                 } else {
                     throw new ClassCastException(customer + " is not a customer");
@@ -129,7 +129,7 @@ public class Main {
         for (Person p : persons) {
             if (p.getName().equals(employee)) {
                 if (p instanceof Employee) {
-                    e = (Employee)p;
+                    emp = (Employee)p;
                     break;
                 } else {
                     throw new ClassCastException(employee + " is not an employee");
@@ -137,14 +137,14 @@ public class Main {
             }
         }
 
-        if (c == null) {
+        if (cus == null) {
             throw new NoSuchElementException(customer + " does not exist");
         }
 
-        if (e == null) {
+        if (emp == null) {
             throw new NoSuchElementException(employee + " does not exist");
         }
 
-        return c.speak(e);
+        return cus.speak(emp);
     }
 }
